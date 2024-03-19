@@ -1,0 +1,18 @@
+`verilator_config
+
+lint_off -rule UNOPTFLAT -file "*la_vmux.v"
+lint_off -rule TIMESCALEMOD
+
+lint_off -rule UNOPTFLAT -file "*ebrick_crossbar_4x4.sv"
+
+lint_off -rule UNUSEDPARAM -file "*ebrick_core.v"
+lint_off -rule UNUSEDSIGNAL -file "*ebrick_core.v"
+lint_off -rule PINCONNECTEMPTY -file "*ebrick_core.v"
+
+lint_off -file "**/picorv32.v"
+lint_off -file "**/axilite2umi.v"
+lint_off -file "**/umi_pack.v"
+lint_off -file "**/umi_unpack.v"
+lint_off -file "**/umi_decode.v"
+lint_off -file "**/la_rsync.v"
+lint_off -file "**/la_drsync.v"

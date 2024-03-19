@@ -1,0 +1,42 @@
+# Copyright (c) 2024 Zero ASIC Corporation
+# This code is licensed under Apache License 2.0 (see LICENSE for details)
+
+# can run locally with: "act --rm pull_request"
+# see https://github.com/nektos/act
+
+name: Regression
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  testbench:
+    name: Run test
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/zeroasiccorp/ebrick-demo:latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        testbench:
+          - test_prv32.py
+          - test_prv32_memagent.py
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup git access
+        run: |
+          git config --global --add url."https://github.com/".insteadOf git@github.com:
+
+      - name: Install Python package
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install --ignore-installed -e .
+
+      - name: Run test
+        working-directory: ebrick_demo/testbench
+        run: python3 ${{matrix.testbench}}

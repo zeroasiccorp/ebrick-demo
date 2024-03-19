@@ -1,0 +1,43 @@
+name: Run SiliconCompiler ebrick core demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  siliconcompiler:
+    name: Run siliconcompiler flow
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/siliconcompiler/sc_runner:latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup git access
+        run: |
+          git config --global --add url."https://github.com/".insteadOf git@github.com:
+
+      - name: Setup python
+        run: |
+          python3 -m venv --system-site-packages .ebrick_demo
+          . .ebrick_demo/bin/activate
+          python3 -m pip install --upgrade pip
+          pip3 install -e .
+
+      - name: Run rtl2gds
+        run: |
+          . .ebrick_demo/bin/activate
+          python3 ebrick_demo/ebrick.py -flow asicflow
+
+      - name: Upload design image
+        uses: actions/upload-artifact@v4
+        with:
+          name: image
+          path: build/*/*/*.png
+
+      - name: Upload build directory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build/

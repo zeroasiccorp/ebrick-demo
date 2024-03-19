@@ -1,0 +1,73 @@
+# Copyright (c) 2024 Zero ASIC Corporation
+# This code is licensed under Apache License 2.0 (see LICENSE for details)
+
+# modified from https://github.com/siliconcompiler/siliconcompiler/blob/main/.github/workflows/lint.yml
+
+name: Lint
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint_python:
+    name: Lint Python Code
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
+      - name: Install Requirements
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install .[test]
+
+      - name: Lint with Flake8
+        run: flake8 --statistics .
+
+  lint_tcl:
+    name: Lint tcl Code
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
+      - name: Install Requirements
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install .[test]
+
+      - name: Lint with Flake8
+        run: tclint .
+
+  sc_lintflow:
+    name: Run lintflow from siliconcompiler
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/siliconcompiler/sc_runner:latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup git access
+        run: |
+          git config --global --add url."https://github.com/".insteadOf git@github.com:
+
+      - name: Setup python
+        run: |
+          python3 -m venv --system-site-packages .ebrick_demo
+          . .ebrick_demo/bin/activate
+          python3 -m pip install --upgrade pip
+          pip3 install -e .
+
+      - name: Run lintflow
+        run: |
+          . .ebrick_demo/bin/activate
+          python3 ebrick_demo/ebrick.py -flow lintflow

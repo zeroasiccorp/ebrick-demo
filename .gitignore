@@ -1,0 +1,45 @@
+# Build output
+build
+
+# Common editor/IDE config and temporary files
+.project
+.vscode/
+.sw[a-p]
+tags
+*~
+.DS_Store
+compile_flags.txt
+
+# binary outputs
+*.bin
+*.elf
+*.hex
+*.so
+*.o
+*.d
+*.vpi
+*.vvp
+*.out
+*.dSYM
+*.swp
+
+# other outputs
+*.log
+*.egg-info
+*.doit*
+*.vcd
+*.fst
+results.xml
+obj_dir
+.pytest_cache
+sc_work
+
+# queues
+queue-*
+*.q
+
+# Python cache files
+__pycache__
+
+# act secrets
+.secrets
