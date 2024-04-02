@@ -14,7 +14,7 @@ description = "ebrick-demo"
 version = "0.0.1"
 dependencies = [
     "switchboard-hw == 0.0.38",
-    "siliconcompiler == 0.21.6",
+    "siliconcompiler >= 0.21.6",
     "umi @ git+https://github.com/zeroasiccorp/umi@main",
     "lambdalib == 0.2.0"
 ]
