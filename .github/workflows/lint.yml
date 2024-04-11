@@ -43,7 +43,7 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install .[test]
 
-      - name: Lint with Flake8
+      - name: Lint
         run: tclint .
 
   sc_lintflow:
