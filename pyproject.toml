@@ -23,7 +23,7 @@ dependencies = [
 # Test dependencies.
 test = [
     "flake8 == 7.0.0",
-    "tclint == 0.2.5"
+    "tclint == 0.3.0"
 ]
 
 [tool.setuptools]
