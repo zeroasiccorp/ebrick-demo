@@ -31,6 +31,7 @@ def __add_ebrick_sources(chip):
     chip.add('option', 'library', 'umi')
 
     chip.add('option', 'library', 'lambdalib_stdlib')
+    chip.add('option', 'library', 'lambdalib_auxlib')
     chip.add('option', 'library', 'lambdalib_ramlib')
     chip.add('option', 'library', 'lambdalib_vectorlib')
 
