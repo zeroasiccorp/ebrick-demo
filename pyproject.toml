@@ -16,14 +16,14 @@ dependencies = [
     "switchboard-hw >= 0.0.39",
     "siliconcompiler >= 0.21.6",
     "umi-hw >= 0.1.0, < 0.2.0",
-    "lambdalib >= 0.2.0, < 0.2.5"
+    "lambdalib >= 0.2.0, < 0.2.6"
 ]
 
 [project.optional-dependencies]
 # Test dependencies.
 test = [
     "flake8 == 7.0.0",
-    "tclint == 0.3.0"
+    "tclint == 0.3.1"
 ]
 
 [tool.setuptools]
