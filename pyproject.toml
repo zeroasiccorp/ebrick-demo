@@ -22,7 +22,7 @@ dependencies = [
 [project.optional-dependencies]
 # Test dependencies.
 test = [
-    "flake8 == 7.0.0",
+    "flake8 == 7.1.0",
     "tclint == 0.3.1"
 ]
 
