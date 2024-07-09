@@ -14,7 +14,7 @@ from siliconcompiler.flows import lintflow
 
 def __add_ebrick_sources(chip):
     # Add the ebrick itself as a package source
-    chip.register_package_source(
+    chip.register_source(
         'ebrick_demo',
         os.path.abspath(os.path.dirname(__file__)))
 
@@ -43,7 +43,7 @@ def setup_core_design(chip):
     __add_ebrick_sources(chip)
 
     # Add picorv32 data source
-    chip.register_package_source(
+    chip.register_source(
         name='picorv32',
         path='git+https://github.com/YosysHQ/picorv32.git',
         ref='a7b56fc81ff1363d20fd0fb606752458cd810552')
@@ -168,7 +168,7 @@ def main():
     args = chip.create_cmdline(
         switchlist=['-target',
                     '-flow',
-                    '-resume',
+                    '-clean',
                     '-jobname',
                     '-quiet',
                     '-remote'],
