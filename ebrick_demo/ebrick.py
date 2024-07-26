@@ -57,12 +57,8 @@ def setup_core_design(chip):
 def __setup_asicflow(chip):
     # Setup asic flow
 
-    if chip.get('option', 'mode') == 'asic':
-        # set SYNTHESIS macro if running in asic mode
-        chip.add('option', 'define', 'SYNTHESIS')
-
-    # Set mode to asic
-    chip.set('option', 'mode', 'asic')
+    # set SYNTHESIS macro
+    chip.add('option', 'define', 'SYNTHESIS')
 
     # Add timing constraints
     mainlib = chip.get('asic', 'logiclib')[0]  # This is set by the target
@@ -116,9 +112,6 @@ def __setup_lintflow(chip):
 
     # Import lintflow
     chip.use(lintflow)
-
-    # Set mode to simulation
-    chip.set('option', 'mode', 'sim')
 
     # Add tool specific settings
     chip.add('tool', 'verilator', 'task', 'lint', 'option', '-Wall')
