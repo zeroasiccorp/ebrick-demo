@@ -26,15 +26,6 @@ def __add_ebrick_sources(chip):
     chip.use(umi)
     chip.use(lambdalib)
 
-    # Set the libraries ebrick_core depends on
-    chip.add('option', 'library', 'lumi')
-    chip.add('option', 'library', 'umi')
-
-    chip.add('option', 'library', 'lambdalib_stdlib')
-    chip.add('option', 'library', 'lambdalib_auxlib')
-    chip.add('option', 'library', 'lambdalib_ramlib')
-    chip.add('option', 'library', 'lambdalib_vectorlib')
-
     # Set the top module to ebrick_core
     chip.set('option', 'entrypoint', 'ebrick_core')
 
@@ -114,7 +105,6 @@ def __setup_lintflow(chip):
     chip.use(lintflow)
 
     # Add tool specific settings
-    chip.add('tool', 'verilator', 'task', 'lint', 'option', '-Wall')
     chip.add('tool', 'verilator', 'task', 'lint', 'file', 'config',
              'config/config.vlt', package='ebrick_demo')
 

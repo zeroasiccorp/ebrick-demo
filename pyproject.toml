@@ -15,8 +15,8 @@ version = "0.0.1"
 dependencies = [
     "switchboard-hw >= 0.0.39",
     "siliconcompiler >= 0.25.0",
-    "umi-hw >= 0.1.0, < 0.2.0",
-    "lambdalib >= 0.2.6, < 0.2.7"
+    "umi >= 0.1.0, < 0.2.0",
+    "lambdalib >= 0.2.9, < 0.2.10"
 ]
 
 [project.optional-dependencies]
