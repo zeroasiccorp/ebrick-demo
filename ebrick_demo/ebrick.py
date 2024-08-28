@@ -184,13 +184,13 @@ def main():
         )
         return
 
+    if 'target' not in args or not args['target']:
+        # load the target if it wasn't specified at the CLI
+        chip.use(asap7_demo)
+
     ################################
     # Lintflow is the default flow
     chip.set('option', 'flow', 'lintflow', clobber=False)
-
-    if not chip.get('option', 'target'):
-        # load the target if it wasn't specified at the CLI
-        chip.load_target(asap7_demo)
 
     # Setup chip
     setup(chip)
